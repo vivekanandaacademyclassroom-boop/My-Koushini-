@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Sweetheart, Koushini 💗</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --pink: #ff5e9c;
+  --light-pink: #fff0f6;
+  --deep-pink: #9d174d;
+  --accent-rose: #e11d48;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background: linear-gradient(180deg, #fff0f6 0%, #ffe0ed 50%, #fff7fb 100%);
+  color: #71304c;
+  text-align: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Falling Hearts Canvas */
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.3s ease;
+}
+
+section {
+  padding: 60px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8), transparent 25%),
+    radial-gradient(circle at 80% 80%, rgba(255, 182, 193, 0.5), transparent 30%),
+    linear-gradient(135deg, #ffe5f0, #ffbad5, #fff0f7);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  color: #a33a68;
+  margin-bottom: 10px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 10vw, 72px);
+  color: #bd326b;
+  line-height: 1.1;
+  margin: 15px 0;
+  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.8);
+}
+
+.hero p {
+  max-width: 360px;
+  line-height: 1.8;
+  font-size: 18px;
+  color: #71304c;
+}
+
+.pulsing-heart {
+  font-size: 65px;
+  margin-bottom: 10px;
+  animation: pulse 1.5s infinite ease-in-out;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+
+.main-btn {
+  margin-top: 25px;
+  padding: 16px 32px;
+  border-radius: 35px;
+  background: linear-gradient(135deg, #ff4f91, #dc2872);
+  color: white;
+  box-shadow: 0 8px 25px rgba(216, 49, 113, 0.35);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.main-btn:active {
+  transform: scale(0.95);
+}
+
+.music-btn {
+  background: rgba(255, 255, 255, 0.8);
+  color: #a12c60;
+  border: 1px solid #ffb4d0;
+  border-radius: 30px;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+/* Counter Section */
+.counter-box {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 182, 193, 0.5);
+  border-radius: 25px;
+  padding: 30px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(181, 46, 101, 0.08);
+}
+
+.timer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.time-card {
+  background: #ffffff;
+  padding: 15px 5px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.time-num {
+  font-size: 24px;
+  font-weight: bold;
+  color: #c33872;
+  font-family: Arial, sans-serif;
+}
+
+.time-label {
+  font-size: 11px;
+  color: #a65a7b;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-family: Arial, sans-serif;
+}
+
+/* Envelope Letter Section */
+.envelope-wrapper {
+  max-width: 500px;
+  margin: 30px auto;
+  background: #fffafc;
+  border: 1px solid #f6c4d8;
+  border-radius: 20px;
+  padding: 30px 25px;
+  box-shadow: 0 12px 35px rgba(181, 46, 101, 0.1);
+  text-align: left;
+  line-height: 1.9;
+  font-size: 17px;
+  white-space: pre-line;
+  position: relative;
+}
+
+.envelope-wrapper strong {
+  color: #c33872;
+}
+
+/* Photo Gallery & Flip Cards */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  max-width: 500px;
+  margin: 25px auto;
+}
+
+.photo-card {
+  aspect-ratio: 3/4;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.photo-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(189, 50, 107, 0.12);
+}
+
+.photo-card.flipped .photo-inner {
+  transform: rotateY(180deg);
+}
+
+.photo-front, .photo-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 3px solid #ffffff;
+}
+
+.photo-front {
+  background: linear-gradient(145deg, #ffc8df, #fff4f8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  color: #71304c;
+}
+
+.photo-front img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-back {
+  background: #ffffff;
+  color: #bd326b;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.upload-btn {
+  margin-top: 8px;
+  font-size: 11px;
+  background: rgba(255,255,255,0.8);
+  padding: 4px 8px;
+  border-radius: 10px;
+  color: #c33872;
+}
+
+/* Jar of Reasons */
+.jar-box {
+  background: #ffffffc9;
+  border-radius: 25px;
+  padding: 30px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border: 1px solid #ffd1e2;
+}
+
+.reason-display {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #bd326b;
+  margin: 20px 0;
+  padding: 15px;
+  background: #fff0f6;
+  border-radius: 15px;
+  border: 1px dashed #ffb4d0;
+}
+
+/* Titles & Utilities */
+.section-title {
+  font-size: clamp(28px, 6vw, 40px);
+  color: #c33872;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #98516f;
+  margin-bottom: 25px;
+}
+
+footer {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  color: #a65a7b;
+}
+
+@media (max-width: 480px) {
+  .timer-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="canvas-container"></canvas>
+
+<!-- Hero Section -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<header class="hero">
+  <div class="pulsing-heart" onclick="triggerBurst()">💗</div>
+  <div class="eyebrow">A little world made for you</div>
+  <h1>My Sweetheart,<br>Koushini</h1>
+
+  <p>
+    Out of all the people in this world, I'm so glad our paths crossed.
+    This little corner of the internet belongs to you. 🌷
+  </p>
+
+  <button class="main-btn" onclick="scrollToSection('counter')">
+    Open Your Surprise 💌
+  </button>
+
+  <button class="music-btn" onclick="toggleAudioSynth()">
+  🎵 <span id="music-text">Play Romantic Melodies</span>
+</button 
+</header>
+
+<!-- Relationship Counter -->
+<section id="counter">
+  <h2 class="section-title">Time Spent Loving You ⏳</h2>
+  <p class="subtitle">Every second with you is my favorite moment.</p>
+
+  <div class="counter-box">
+    <div style="font-size: 40px; margin-bottom: 10px;">🗓️</div>
+    <div id="counter-title" style="font-size: 16px; font-weight: bold; color: #bd326b;">Counting Our Special Journey</div>
+    
+    <div class="timer-grid">
+      <div class="time-card">
+        <div class="time-num" id="days">00</div>
+        <div class="time-label">Days</div>
+      </div>
+      <div class="time-card">
+        <div class="time-num" id="hours">00</div>
+        <div class="time-label">Hours</div>
+      </div>
+      <div class="time-card">
+        <div class="time-num" id="minutes">00</div>
+        <div class="time-label">Minutes</div>
+      </div>
+      <div class="time-card">
+        <div class="time-num" id="seconds">00</div>
+        <div class="time-label">Seconds</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Love Letter -->
+<section id="letter">
+  <h2 class="section-title">A Letter For You 💌</h2>
+  <p class="subtitle">Some feelings deserve more than a simple text message.</p>
+
+  <div class="envelope-wrapper">
+    <strong>To my Sweetheart, Koushini 💗</strong>
+
+    Happy Anniversary, my love.
+
+    I wish I could be beside you today, but even from a distance, I wanted to make something that reminds you how special you are to me.
+
+    Thank you for the memories, the little moments, the conversations, and all the happiness you bring into my life.
+
+    You don't have to be perfect, and neither do I. What matters to me is that we keep learning about each other, communicating honestly, and treating each other with care.
+
+    If I could give you one thing today, it would be the ability to see yourself through my eyes for just a moment, so you could understand how precious you are to me.
+
+    <strong>Happy Anniversary, Koushini. ❤️</strong>
+
+    With all my love,
+    <strong>Your Person 💗</strong>
+  </div>
+</section>
+
+<!-- Interactive Gallery -->
+<section id="gallery-section">
+  <h2 class="section-title">Our Little Memories 📸</h2>
+  <p class="subtitle">Tap any card to flip it over and read a memory!</p>
+
+  <div class="gallery">
+    <!-- Photo 1 -->
+    <div class="photo-card" onclick="this.classList.toggle('flipped')">
+      <div class="photo-inner">
+        <div class="photo-front">
+          <img id="img-1" src="photo1.jpg" onerror="this.style.display='none'">
+          <div style="font-size: 30px;">🌸</div>
+          <b>Our First Memory</b>
+          <label class="upload-btn" onclick="event.stopPropagation()">
+            Upload Photo
+            <input type="file" accept="image/*" style="display:none" onchange="loadPhoto(event, 'img-1')">
+          </label>
+        </div>
+        <div class="photo-back">
+          "The day everything started feeling a little more special."
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo 2 -->
+    <div class="photo-card" onclick="this.classList.toggle('flipped')">
+      <div class="photo-inner">
+        <div class="photo-front">
+          <img id="img-2" src="photo2.jpg" onerror="this.style.display='none'">
+          <div style="font-size: 30px;">🌷</div>
+          <b>My Favorite Smile</b>
+          <label class="upload-btn" onclick="event.stopPropagation()">
+            Upload Photo
+            <input type="file" accept="image/*" style="display:none" onchange="loadPhoto(event, 'img-2')">
+          </label>
+        </div>
+        <div class="photo-back">
+          "Your smile is literally my favorite view in the whole world."
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo 3 -->
+    <div class="photo-card" onclick="this.classList.toggle('flipped')">
+      <div class="photo-inner">
+        <div class="photo-front">
+          <img id="img-3" src="photo3.jpg" onerror="this.style.display='none'">
+          <div style="font-size: 30px;">✨</div>
+          <b>A Moment To Treasure</b>
+          <label class="upload-btn" onclick="event.stopPropagation()">
+            Upload Photo
+            <input type="file" accept="image/*" style="display:none" onchange="loadPhoto(event, 'img-3')">
+          </label>
+        </div>
+        <div class="photo-back">
+          "Every minute spent talking to you feels like a blessing."
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo 4 -->
+    <div class="photo-card" onclick="this.classList.toggle('flipped')">
+      <div class="photo-inner">
+        <div class="photo-front">
+          <img id="img-4" src="photo4.jpg" onerror="this.style.display='none'">
+          <div style="font-size: 30px;">💖</div>
+          <b>More To Come</b>
+          <label class="upload-btn" onclick="event.stopPropagation()">
+            Upload Photo
+            <input type="file" accept="image/*" style="display:none" onchange="loadPhoto(event, 'img-4')">
+          </label>
+        </div>
+        <div class="photo-back">
+          "Looking forward to a thousand more memories with you."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Jar of Reasons -->
+<section id="jar-section">
+  <h2 class="section-title">Jar of Reasons 🫙</h2>
+  <p class="subtitle">Tap the jar to pull out a reason why you're special to me!</p>
+
+  <div class="jar-box">
+    <div style="font-size: 60px; cursor: pointer;" onclick="drawReason()">🫙</div>
+    
+    <div class="reason-display" id="reason-text">
+      Tap the jar to open a note! 💖
+    </div>
+
+    <button class="main-btn" style="margin-top: 5px; padding: 12px 24px;" onclick="drawReason()">
+      Pull A Note 💌
+    </button>
+  </div>
+</section>
+
+<!-- Final Section -->
+<section style="background: linear-gradient(180deg, #ffe4ef, #ffc0da); padding-bottom: 80px;">
+  <div class="pulsing-heart">❤️</div>
+  <h2 class="section-title">I Choose You, Koushini 💗</h2>
+  <p style="max-width: 350px; margin: 15px auto; line-height: 1.8;">
+    No matter how far apart we are, distance can never erase the beautiful moments we share.
+  </p>
+
+  <button class="main-btn" onclick="triggerBurst()">
+    Send A Thousand Hearts 💕
+  </button>
+</section>
+
+<footer>
+  Made with all my love, especially for Koushini 💗
+</footer>
+
+<script>
+// --- Smooth Scroll ---
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  triggerBurst();
+}
+
+// --- Live Relationship Counter ---
+// Set your relationship start date here: Year, Month (0-based, so Sep=8), Day
+const startDate = new Date(2025, 8, 24, 0, 0, 0); 
+
+function updateCounter() {
+  const now = new Date();
+  const diff = now - startDate;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  document.getElementById('days').textContent = String(days).padStart(2, '0');
+  document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+}
+setInterval(updateCounter, 1000);
+updateCounter();
+
+// --- Photo Upload Handling ---
+function loadPhoto(event, imgId) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.getElementById(imgId);
+      img.src = e.target.result;
+      img.style.display = 'block';
+    }
+    reader.readAsDataURL(file);
+  }
+}
+
+// --- Jar of Reasons ---
+const reasons = [
+  "You make ordinary days feel extraordinarily bright. ☀️",
+  "Your kindness and gentle heart inspire me every day. 🌷",
+  "The way your smile lights up everything around you. 😊",
+  "How deeply you care about the people around you. 💕",
+  "Your voice is my favorite sound in the world. 🎵",
+  "You make me want to be the best version of myself. ✨",
+  "Simply because you exist and you're you. 💗"
+];
+
+function drawReason() {
+  const randomIndex = Math.floor(Math.random() * reasons.length);
+  const display = document.getElementById('reason-text');
+  display.style.opacity = '0';
+  setTimeout(() => {
+    display.textContent = reasons[randomIndex];
+    display.style.opacity = '1';
+  }, 200);
+  triggerBurst();
+}
+
+// --- Floating Canvas Animation ---
+const canvas = document.getElementById('canvas-container');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+class Particle {
+  constructor(x, y, isBurst = false) {
+    this.x = x || Math.random() * canvas.width;
+    this.y = y || (isBurst ? y : canvas.height + 20);
+    this.size = Math.random() * 18 + 10;
+    this.speedY = isBurst ? (Math.random() - 0.5) * 8 : - (Math.random() * 2 + 1);
+    this.speedX = isBurst ? (Math.random() - 0.5) * 8 : (Math.random() - 0.5) * 1.5;
+    this.symbol = ['💗', '💕', '💖', '🌸', '✨'][Math.floor(Math.random() * 5)];
+    this.opacity = 1;
+    this.fade = isBurst ? 0.02 : 0.005;
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.opacity -= this.fade;
+  }
+
+  draw() {
+    ctx.globalAlpha = Math.max(0, this.opacity);
+    ctx.font = `${this.size}px serif`;
+    ctx.fillText(this.symbol, this.x, this.y);
+  }
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  if (Math.random() < 0.1) {
+    particles.push(new Particle());
+  }
+
+  for (let i = particles.length - 1; i >= 0; i--) {
+    particles[i].update();
+    particles[i].draw();
+    if (particles[i].opacity <= 0) {
+      particles.splice(i, 1);
+    }
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+function triggerBurst() {
+  for (let i = 0; i < 30; i++) {
+    particles.push(new Particle(canvas.width / 2, canvas.height / 2, true));
+  }
+}
+
+// --- Web Audio Synthesizer (Built-in Melodies) ---
+let audioCtx = null;
+let isPlayingAudio = false;
+let audioTimer = null;
+
+function playNote(freq, duration) {
+  if (!audioCtx) return;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  
+  osc.type = 'sine';
+  osc.frequency.value = freq;
+  
+  gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+  
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration);
+}
+
+function toggleAudioSynth() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  
+  const btnText = document.getElementById('music-text');
+  
+  if (isPlayingAudio) {
+    clearInterval(audioTimer);
+    isPlayingAudio = false;
+    btnText.textContent = "Play Romantic Melodies";
+  } else {
+    isPlayingAudio = true;
+    btnText.textContent = "Pause Melodies";
+    
+    const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88]; // C major notes
+    let step = 0;
+    
+    audioTimer = setInterval(() => {
+      const note = notes[step % notes.length];
+      playNote(note, 1.2);
+      step++;
+    }, 600);
+  }
+}
+function updateTimer() {
+  // Start date: September 24, 2026 at 7:03 PM
+  const startDate = new Date("2026-09-24T19:03:00"); 
+  const now = new Date();
+  
+  let diff = now - startDate;
+  if (diff < 0) diff = 0;
+  
+  // Standard breakdown
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  // Update boxes
+  if (document.getElementById('days')) document.getElementById('days').innerText = days;
+  if (document.getElementById('hours')) document.getElementById('hours').innerText = hours;
+  if (document.getElementById('minutes')) document.getElementById('minutes').innerText = minutes;
+  if (document.getElementById('seconds')) document.getElementById('seconds').innerText = seconds;
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
+
+</script>
+
+
+</body>
+</html>
